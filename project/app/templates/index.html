@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container-fluid p-0">
+<div class="sidebar">
+  <div class="minimize-button" onclick="toggleSidebar()"><i class="fa fa-fw fa-angle-double-left"></i></div>
+  <a href="#home"><i class="fa fa-fw fa-home"></i> <span class="title">Home</span></a>
+  <a href="#services"><i class="fa fa-fw fa-wrench"></i> <span class="title">Services</span></a>
+  <a href="#clients"><i class="fa fa-fw fa-user"></i> <span class="title">Clients</span></a>
+  <a href="#contact"><i class="fa fa-fw fa-envelope"></i> <span class="title">Contact</span></a>
+</div>
+
+{% comment %} <div class="navbar">
+    <div class="container">
+        <div class="navbar-title ">ApplogiQ</div>
+        <button class="logout-menu">Logout</button>
+    </div>
+</div> {% endcomment %}
+
+
+
+<div class="main">
+  <nav class="navbar navbar-light bg-light ">
+    <div class="container-fluid ">
+      <span class="navbar-brand text-dark h1">Navbar</span>
+      <span>
+        <button class="logout-menu">logout</button>
+      </span>
+    </div>
+  </nav>
+  <div class="px-4">
+
+
+    {% block mymessage %}
+    {% endblock %}
+    {% block studentlist %}
+    {% endblock %}
+    {% block form %}
+    {% endblock %}
+  </div>
+ </div>
+ </div>
+
+     <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const minimizeButtonIcon = document.querySelector('.minimize-button i');
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebar.classList.toggle('minimized');
+          
+            if (sidebar.classList.contains('minimized')) {
+              minimizeButtonIcon.classList.remove('fa-angle-double-left');
+              minimizeButtonIcon.classList.add('fa-angle-double-right');
+              document.querySelector('.main').style.marginLeft = '60px';
+            } else {
+              minimizeButtonIcon.classList.remove('fa-angle-double-right');
+              minimizeButtonIcon.classList.add('fa-angle-double-left');
+              document.querySelector('.main').style.marginLeft = '160px';
+            }
+          
+            sidebarLinks.forEach(link => {
+              if (sidebar.classList.contains('minimized')) {
+                link.querySelector('.fa').style.display = 'inline';
+                link.querySelector('.title').style.display = 'none';
+              } else {
+                link.querySelector('.fa').style.display = 'inline-block';
+                link.querySelector('.title').style.display = 'inline';
+              }
+            });
+          }
+            
+    </script>
+        
+</body>
+</html>

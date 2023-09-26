@@ -1,0 +1,22 @@
+<!-- student/templates/student/student_form.html -->
+
+{% extends 'index.html' %}
+{% block form %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Edit Student{% else %}Add Student{% endif %}</title>
+</head>
+<body>
+    
+    <h1>{% if form.instance.pk %}Edit Student{% else %}Add Student{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'student_list' %}">Back to List</a>
+    
+</body>
+</html>
+{% endblock form %}

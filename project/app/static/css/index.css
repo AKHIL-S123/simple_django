@@ -1,0 +1,81 @@
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #215564;
+  overflow-x: hidden;
+  padding-top: 48px;
+  transition: width 0.5s;
+}
+
+.sidebar a {
+  padding: 15px 8px 15px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Adjusted margin to match the expanded sidebar width */
+  padding-left:5px;
+  transition: margin-left 0.5s;
+}
+
+.sidebar.minimized {
+  width: 60px;
+}
+
+.sidebar.minimized a {
+  padding-left: 8px;
+}
+
+.sidebar.minimized a .fa {
+  display: none;
+}
+
+.sidebar.minimized a:hover .fa {
+  display: inline-block;
+}
+
+.minimize-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.navbar {
+  position: fixed;
+  background-color: hsl(204, 45%, 98%); 
+  border-style: solid;
+  border-color: #215564 ;
+  border-width: 5px 0; 
+}
+
+
+.logout-menu {
+    background-color: red;
+    color: white;
+    
+}
+
+
+
+
+

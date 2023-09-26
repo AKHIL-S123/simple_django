@@ -1,0 +1,57 @@
+<!-- student/templates/student/student_list.html -->
+{% extends 'index.html' %}
+{% block studentlist %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Grade</th>
+                <th>Action</th>      
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.grade }}</td>
+                <td>
+                    <div>
+                    <a href="/update/{{ student.id }}" class="text-decoration-none "><span class="glyphicon glyphicon-pencil ">Edit</span></a>
+                    <a href="/delete/{{ student.id }}" class="text-decoration-none text-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'student_create' %}">Add Student</a>
+</body>
+</html>
+{% endblock %}
