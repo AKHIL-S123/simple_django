@@ -71,10 +71,12 @@ body {font-family: "Lato", sans-serif;}
 
 .logout-menu {
     background-color: red;
-    color: white;
     
 }
-
+.logout-menu .nav-link {
+  color: white; 
+  text-decoration: none; 
+}
 
 
 

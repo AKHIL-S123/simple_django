@@ -4,6 +4,8 @@ from .forms import StudentForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+
 
 def signup(request):
     if  request.method == 'POST':
@@ -22,6 +24,7 @@ def signup(request):
         return redirect('signin')
     return render(request,'signup.html')
 
+
 def signin(request):
     if  request.method == 'POST':
         username=request.POST['username']
@@ -30,20 +33,25 @@ def signin(request):
         print(username,pass1,user,"authenticate")
         if user is not None:
             login(request,user)
-            return render(request,'home.html')
+            return redirect('student_list')
         else:
             messages.error(request,"Invalid credentials")
-            return redirect('home')
+           
 
     return render(request,'signin.html')
 
+@login_required
 def signout(request):
     logout(request)
     messages.success(request,"Logout successfully") 
-    return render(request,'home.html')
+    return redirect('signin')
 
+@login_required
 def home(request):
-    return render(request,'home.html')
+    students = Student.objects.all()
+    return render(request,'student_list.html',{'students':students})
+
+
 
 def student_list(request):
     students = Student.objects.all()

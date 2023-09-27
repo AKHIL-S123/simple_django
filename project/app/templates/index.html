@@ -10,6 +10,7 @@
 
 </head>
 <body>
+  {% if user.is_authenticated %} 
 <div class="container-fluid p-0">
 <div class="sidebar">
   <div class="minimize-button" onclick="toggleSidebar()"><i class="fa fa-fw fa-angle-double-left"></i></div>
@@ -19,13 +20,6 @@
   <a href="#contact"><i class="fa fa-fw fa-envelope"></i> <span class="title">Contact</span></a>
 </div>
 
-{% comment %} <div class="navbar">
-    <div class="container">
-        <div class="navbar-title ">ApplogiQ</div>
-        <button class="logout-menu">Logout</button>
-    </div>
-</div> {% endcomment %}
-
 
 
 <div class="main">
@@ -33,7 +27,7 @@
     <div class="container-fluid ">
       <span class="navbar-brand text-dark h1">Navbar</span>
       <span>
-        <button class="logout-menu">logout</button>
+        <button class="logout-menu"><a class="nav-link" href="signout">Logout</a></button>
       </span>
     </div>
   </nav>
@@ -79,6 +73,11 @@
           }
             
     </script>
+
+    {% else %}
+    <button type="submit"><a href="/signup">SignUp</a></button>
+    <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
         
 </body>
 </html>
