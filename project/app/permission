@@ -1,0 +1,9 @@
+from django.contrib.auth.models import Permission
+
+# List all permissions
+all_permissions = Permission.objects.all()
+
+for permission in all_permissions:
+    print(f"Permission Name: {permission.codename}")
+    print(f"Permission Description: {permission.name}")
+    print("----------------------------------------------------------------")

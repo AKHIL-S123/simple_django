@@ -1,6 +1,9 @@
 <!-- student/templates/student/student_list.html -->
 {% extends 'index.html' %}
+{% load custom_filters %}
 {% block studentlist %}
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,15 +46,29 @@
                 <td>{{ student.grade }}</td>
                 <td>
                     <div>
+                    {% if user|has_permission:"app.change_student" %}
                     <a href="/update/{{ student.id }}" class="text-decoration-none "><span class="glyphicon glyphicon-pencil ">Edit</span></a>
+                    {% endif %}
+                    {% comment %} {% if user|has_perm:"app.delete_student" %} {% endcomment %}
+                    {% if user|has_permission:"app.delete_student" %}
                     <a href="/delete/{{ student.id }}" class="text-decoration-none text-danger">Delete</a>
+                    {% endif %}
+                    
+                    
                     </div>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% if user|has_permission:"app.add_student" %}
     <a href="{% url 'student_create' %}">Add Student</a>
+    {% endif %}
+
 </body>
 </html>
 {% endblock %}
+
+                   {% comment %} {% if perms.app.can_update_student %}
+                    <a href="/update/{{ student.id }}" class="text-decoration-none "><span class="glyphicon glyphicon-pencil ">Edit</span></a>
+                    {% endif %} {% endcomment %}
