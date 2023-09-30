@@ -1,22 +1,81 @@
 <!-- student/templates/student/student_form.html -->
-
 {% extends 'index.html' %}
 {% block form %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% if form.instance.pk %}Edit Student{% else %}Add Student{% endif %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     
     <h1>{% if form.instance.pk %}Edit Student{% else %}Add Student{% endif %}</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+        {{ form.first_name }}
+        <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+        {{ form.last_name }}
+        <label for="{{ form.age.id_for_label }}">Age:</label>
+        {{ form.age }}
+        <label for="{{ form.grade.id_for_label }}">Grade:</label>
+        {{ form.grade }}
         <button type="submit">Save</button>
     </form>
     <a href="{% url 'student_list' %}">Back to List</a>
     
 </body>
 </html>
-{% endblock form %}
+{% endblock form %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
